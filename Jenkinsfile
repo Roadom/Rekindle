@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('rekindle') {  
-                    sh 'flutter build apk --debug'
+                    sh 'flutter build apk --debug --verbose'
                 }
             }
         }

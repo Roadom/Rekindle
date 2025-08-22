@@ -1,6 +1,10 @@
 pipeline {
-    agent any   // run on any available Jenkins executor
-
+    agent {
+        docker {
+            image 'cirrusci/flutter:latest'
+            args '-u root:root'   // so it runs as root, avoids permissions issues
+        }
+    }
     stages {
         stage('Build') {
             steps {

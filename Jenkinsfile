@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'cirrusci/flutter:latest'
+            image 'ghcr.io/cirruslabs/flutter:3.36.0-0.1.pre'
             args '-u root:root'   // so it runs as root, avoids permissions issues
         }
     }

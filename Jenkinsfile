@@ -2,7 +2,6 @@ pipeline {
     agent {
         node {
             label 'jenkins-flutter-agent'
-            args '-u root:root'   // so it runs as root, avoids permissions issues
         }
     }
     stages {

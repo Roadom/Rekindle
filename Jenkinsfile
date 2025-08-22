@@ -5,34 +5,31 @@ pipeline {
         }
     }
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Roadom/Rekindle.git'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Build'
+                sh 'flutter build apk --debug'
             }
         }
 
         stage('Unit Test') {
             steps {
-                echo 'unit test'
+                sh 'flutter test'
             }
         }
+    }
 
-        stage('Deploy To Test Env') {
-            steps {
-                echo 'Deploying APK to test environment...'
-            }
+    post {
+        success {
+            archiveArtifacts artifacts: 'build/app/outputs/flutter-apk/app-*.apk', fingerprint: true
         }
-
-        stage('Integration Test') {
-            steps {
-                echo 'Running integration tests...'
-            }
-        }
-
-        stage('Create Docker Image') {
-            steps {
-                echo 'Creating docker image...'
-            }
+        failure {
+            echo "Pipeline failed ❌"
         }
     }
 }

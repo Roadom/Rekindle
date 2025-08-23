@@ -2,9 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Run Node in Docker') {
+        stage('TEST') {
             steps {
-                sh 'curl -I https://google.com'
+                dir('rekindle'){
+                    sh 'flutter test'
+                }
+            }
+        }
+        stage('BUILD') {
+            steps {
+                dir('rekindle'){
+                    sh '''
+                    #!/bin/sh
+                    flutter build apk
+                    '''
+                }
             }
         }
     }

@@ -1,7 +1,7 @@
 pipeline {
     agent {
-        node {
-            label 'jenkins-flutter-agent'
+        docker {
+            image 'ghcr.io/cirruslabs/flutter:3.36.0-0.1.pre'
         }
     }
     stages {

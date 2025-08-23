@@ -1,23 +1,45 @@
 pipeline {
-    agent any
-
+    agent {
+        node {
+            label 'jenkins-flutter-agent'
+        }
+    }
     stages {
-        stage('TEST') {
+        stage('Build') {
             steps {
-                dir('rekindle'){
+                dir('rekindle') {  
+                    sh 'flutter build web'
+                }
+            }
+        }
+        stage('Unit Test') {
+            steps {
+                dir('rekindle') { 
                     sh 'flutter test'
                 }
             }
         }
-        stage('BUILD') {
+        stage('Deploy To Test Env') {
             steps {
-                dir('rekindle'){
-                    sh '''
-                    #!/bin/sh
-                    flutter build apk
-                    '''
+                dir('rekindle') {
+                    sh 'mkdir -p /tmp/test_env && cp build/app/outputs/flutter-apk/app-release.apk /tmp/test_env/'
+                    sh 'echo "Simulated deployment complete"'
                 }
             }
         }
+        stage('Integration Test') {
+            steps {
+                dir('rekindle') {
+                    sh 'echo "Running dummy integration test"'
+                }
+            }
+        }
+        stage('Create Docker Image') {
+            steps {
+                sh 'echo "Docker image built"'
+            }
+        }
+
+
     }
 }

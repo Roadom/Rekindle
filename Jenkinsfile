@@ -24,7 +24,7 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: 'my_app/build/app/outputs/flutter-apk/app-*.apk', fingerprint: true
+            archiveArtifacts artifacts: 'rekindle/build/app/outputs/flutter-apk/app-*.apk', fingerprint: true
         }
         failure {
             echo "Pipeline failed ❌"

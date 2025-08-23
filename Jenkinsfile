@@ -8,26 +8,16 @@ pipeline {
         stage('Build') {
             steps {
                 dir('rekindle') {  
-                    sh 'flutter build apk --debug'
+                    sh 'flutter build apk --debug --no-daemon'
                 }
             }
         }
-
         stage('Unit Test') {
             steps {
                 dir('rekindle') { 
                     sh 'flutter test'
                 }
             }
-        }
-    }
-
-    post {
-        success {
-            archiveArtifacts artifacts: 'rekindle/build/app/outputs/flutter-apk/app-*.apk', fingerprint: true
-        }
-        failure {
-            echo "Pipeline failed ❌"
         }
     }
 }

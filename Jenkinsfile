@@ -2,7 +2,11 @@ pipeline {
     agent {
         docker {
             image 'ghcr.io/cirruslabs/flutter:3.36.0-0.1.pre'
+            args '-u root:root -v /var/run/docker.sock:/var/run/docker.sock'
         }
+    }
+    environment {
+        DOCKER_HOST = "tcp://jenkins-docker:2375"
     }
     stages {
         stage('Build') {

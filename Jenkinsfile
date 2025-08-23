@@ -35,13 +35,12 @@ pipeline {
             }
         }
         stage('Create Docker Image') {
+            node { label 'docker-agent-alpine' }
             steps {
-                sh '''
-                docker build -t rekindle-app:latest rekindle/
-                echo "Docker image built"
-                '''
+                sh 'docker build -t rekindle-app:latest rekindle/'
             }
         }
+
 
     }
 }

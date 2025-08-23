@@ -1,9 +1,9 @@
 pipeline {
-    agent {
+    agent { 
         node {
             label 'jenkins-flutter-agent'
-        }
-    }
+            }
+      }
     stages {
         stage('Build') {
             steps {
@@ -22,7 +22,6 @@ pipeline {
         stage('Deploy To Test Env') {
             steps {
                 dir('rekindle') {
-                    sh 'mkdir -p /tmp/test_env && cp build/app/outputs/flutter-apk/app-release.apk /tmp/test_env/'
                     sh 'echo "Simulated deployment complete"'
                 }
             }

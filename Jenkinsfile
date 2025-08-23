@@ -4,9 +4,6 @@ pipeline {
             label 'jenkins-flutter-agent'
         }
     }
-    environment {
-    GRADLE_OPTS = "-Dorg.gradle.daemon=false"
-    }
     stages {
         stage('Build') {
             steps {

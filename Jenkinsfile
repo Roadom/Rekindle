@@ -30,7 +30,7 @@ pipeline {
         stage('Integration Test') {
             steps {
                 dir('rekindle') {
-                    sh 'echo "Running dummy integration test"; exit 0'
+                    sh 'echo "Running dummy integration test"'
                 }
             }
         }

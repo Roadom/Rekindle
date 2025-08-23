@@ -2,13 +2,17 @@ pipeline {
     agent {
         docker {
             image 'ghcr.io/cirruslabs/flutter:3.36.0-0.1.pre'
+            args '-u 1000:1000 -v $JENKINS_HOME/workspace/Rekindle:/var/jenkins_home/workspace/Rekindle'
         }
     }
     stages {
         stage('Build') {
             steps {
                 dir('rekindle') {  
-                    sh 'flutter build web'
+                    sh '''
+                        git config --global --add safe.directory /sdks/flutter
+                        flutter build web
+                    '''
                 }
             }
         }
@@ -38,7 +42,5 @@ pipeline {
                 sh 'echo "Docker image built"'
             }
         }
-
-
     }
 }

@@ -5,17 +5,10 @@ pipeline {
         }
     }
     stages {
-        stage('Dependencies') {
-            steps {
-                dir('rekindle') {
-                    sh 'flutter pub get'
-                }
-            }
-        }
         stage('Build') {
             steps {
                 dir('rekindle') {  
-                    sh 'flutter build apk --debug --verbose'
+                    sh 'flutter build apk --debug'
                 }
             }
         }

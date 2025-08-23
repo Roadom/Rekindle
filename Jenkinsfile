@@ -1,14 +1,16 @@
 pipeline {
     agent {
-        node {
-            label 'jenkins-flutter-agent'
+          docker {
+            image 'ghcr.io/cirruslabs/flutter:3.36.0-0.1.pre'
+            args '-u root:root -v /var/jenkins_home/.pub-cache:/root/.pub-cache -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
+
     stages {
         stage('Build') {
             steps {
                 dir('rekindle') {  
-                    sh 'flutter build apk'
+                    sh 'flutter build web'
                 }
             }
         }

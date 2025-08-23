@@ -5,12 +5,6 @@ pipeline {
         }
     }
     stages {
-        stage('Checkout') {
-            steps {
-                // Pulls code from SCM configured in Jenkins
-                checkout scm
-            }
-        }
         stage('Build') {
             steps {
                 dir('rekindle') {  
@@ -44,5 +38,7 @@ pipeline {
                 sh 'echo "Docker image built"'
             }
         }
+
+
     }
 }

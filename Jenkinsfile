@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Test') {
+        stage('Run Node in Docker') {
             steps {
-                sh 'docker run --rm node:16-alpine node --version'
+                sh 'ping google.com'
             }
         }
     }

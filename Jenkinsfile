@@ -1,7 +1,7 @@
 pipeline {
     agent {
-        node {
-            label 'jenkins-flutter-agent'
+        docker {
+            image 'my-local-image:local' // Specify the name and tag of your local image
         }
     }
     stages {

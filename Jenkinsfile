@@ -4,9 +4,6 @@ pipeline {
             image 'ghcr.io/cirruslabs/flutter:3.36.0-0.1.pre'
         }
     }
-    environment {
-        DOCKER_HOST = "tcp://jenkins-docker:2375"
-    }
     stages {
         stage('Build') {
             steps {

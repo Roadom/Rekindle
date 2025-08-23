@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'my-flutter:3.36'
+            image 'roadom/my-flutter:3.36'
         }
     }
     stages {

@@ -2,7 +2,6 @@ pipeline {
     agent {
         node {
             label 'jenkins-flutter-agent'
-            pull false
         }
     }
     stages {

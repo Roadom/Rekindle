@@ -35,6 +35,11 @@ pipeline {
             }
         }
         stage('Create Docker Image') {
+            agent {
+                node{
+                    label 'docker-agent-alpine'
+                }
+            }
             steps {
                 sh 'echo "Docker image built"'
             }

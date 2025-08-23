@@ -19,5 +19,29 @@ pipeline {
                 }
             }
         }
+        stage('Deploy To Test Env') {
+            steps {
+                dir('rekindle') {
+                    sh 'mkdir -p /tmp/test_env && cp build/app/outputs/flutter-apk/app-release.apk /tmp/test_env/'
+                    sh 'echo "Simulated deployment complete"'
+                }
+            }
+        }
+        stage('Integration Test') {
+            steps {
+                dir('rekindle') {
+                    sh 'echo "Running dummy integration test"; exit 0'
+                }
+            }
+        }
+        stage('Create Docker Image') {
+            steps {
+                sh '''
+                docker build -t rekindle-app:latest rekindle/
+                echo "Docker image built"
+                '''
+            }
+        }
+
     }
 }

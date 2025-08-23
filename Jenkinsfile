@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Run Node in Docker') {
             steps {
-                sh 'ping google.com'
+                sh 'curl -I https://google.com'
             }
         }
     }
